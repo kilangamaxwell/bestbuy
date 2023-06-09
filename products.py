@@ -10,10 +10,17 @@ class Product:
         - price (float): The price of the product.
         - quantity (int): The quantity of the product.
         """
+        if not name:
+            raise ValueError("Invalid name: Name cannot be empty.")
+        if price < 0:
+            raise ValueError("Invalid price: Price cannot be negative.")
         self.name = name
         self.price = price
         self.quantity = quantity
-        self.active = True
+        if self.quantity == 0:
+            self.active = False
+        else:
+            self.active = True
 
     def get_quantity(self) -> int:
         """
@@ -92,4 +99,4 @@ class Product:
             price = self.price * quantity
             return price
         else:
-            print(f"{self.name} not in stock.")
+            raise ValueError(f"{self.name} not in stock.")
