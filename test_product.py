@@ -30,7 +30,7 @@ def test_quantity_after_purchase():
     quantity and returns th right output."""
     product = Product("Test Product", 1150, 200)
     purchase_price = product.buy(50)
-    assert product.quantity == 150
+    assert product.quantity == 200 - 50
     assert purchase_price == 1150 * 50
 
 

@@ -1,3 +1,5 @@
+import products
+
 
 class Store:
     """A class representing a store."""
@@ -79,9 +81,13 @@ class Store:
                     if quantity <= 0:
                         print("Invalid quantity for", name)
                         break
-                    if quantity > product.quantity:
+                    if quantity > product.quantity and type(product) != products.NonStockedProduct:
                         print(
                             f"Not enough stock for {name}. Available quantity: {product.quantity}")
+                        break
+                    if type(product) == products.LimitedProduct and quantity > product.maximum:
+                        print(f"Purchase quantity for {product.name} cannot exceed" +
+                              f" the max limit of {product.maximum} item per order.")
                         break
                     total_price += product.buy(quantity)
                     break
